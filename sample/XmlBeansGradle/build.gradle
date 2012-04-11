@@ -1,0 +1,34 @@
+apply plugin: 'java'
+apply from: 'https://raw.github.com/rartavia/gradle-plugins/master/xmlbeansPlugin/xmlbeans.gradle'
+
+configurations {
+	xmlbeans
+	compile{
+		extendsFrom xmlbeans
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	xmlbeans 'org.apache.xmlbeans:xmlbeans:2.5.0'
+	compile files("${buildDir}/libs/XmlBeansGradle.jar") {
+		builtBy 'buidlSchemasJar'
+	}
+
+	testCompile 'junit:junit:4.10'
+}
+
+sourceSets {
+	schemas {
+		srcDir = 'src/main/schemas' 
+	}
+}
+
+task buidlSchemasJar(type: Jar, dependsOn: compileXmlSchemas) {
+	baseName = 'XmlBeansGradle'
+	from "${buildDir}/classes/xmlbeans"
+	exclude '**/*.java'
+}

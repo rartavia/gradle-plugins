@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://xml.xmlbeansgradle.rartavia.com/XMLSchema"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://xml.xmlbeansgradle.rartavia.com/XMLSchema"
+	elementFormDefault="qualified" attributeFormDefault="qualified">
+	<xs:element name="User" type="UserType" />
+
+	<xs:complexType name="UserType">
+		<xs:sequence>
+			<xs:element name="username" type="xs:string" />
+			<xs:element name="password" type="xs:string" />
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="lastName" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
