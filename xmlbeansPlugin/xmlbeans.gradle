@@ -1,0 +1,10 @@
+apply plugin: 'java'
+
+configurations {
+	xmlbeans
+}
+
+task compileSchemas {
+	ant.taskdef(name:'xmlbean', classname: 'org.apache.xmlbeans.impl.tool.XMLBean', classpath: configurations.xmlbeans.asPath)
+	ant.xmlbean(schema: sourceSets.schemas.srcDir, classgendir: "${buildDir}/classes/xmlbeans", classpath: configurations.xmlbeans.asPath)
+}
